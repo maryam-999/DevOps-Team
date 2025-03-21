@@ -1,4 +1,4 @@
-# 📌 To-Do List - Gestion des tâches ✅
+# 📌 To-Do List - Gestion des tâches
 
 ## 📖 Description  
 Ce projet est une application web simple permettant de gérer une liste de tâches avec *Spring Boot* et *Thymeleaf*.  
