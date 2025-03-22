@@ -6,6 +6,13 @@ L'utilisateur peut *ajouter, modifier, supprimer et marquer des tâches comme te
 
 ---
 
+## 👩 Membres  
+- Soad ERRAMI
+- Maryem YMIL
+- Maryam BOUFOUS 
+
+---
+
 ## 🚀 Fonctionnalités  
 - 📌 *Ajouter* une nouvelle tâche  
 - ✏ *Modifier* une tâche existante  
