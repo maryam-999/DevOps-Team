@@ -22,7 +22,7 @@ L'utilisateur peut *ajouter, modifier, supprimer et marquer des tâches comme te
 ---
 
 ## 🛠 Technologies utilisées  
-- *Java 17*  
+- *Java 23*  
 - *Spring Boot 3.2.0*  
 - *Spring Data JPA*  
 - *H2 Database*  
