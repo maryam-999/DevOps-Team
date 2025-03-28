@@ -1,0 +1,28 @@
+# Fichiers IDE (IntelliJ, Eclipse, etc.)
+.idea/
+*.iml
+.project
+.settings/
+.classpath
+.vscode/
+
+# Fichiers compilés Maven/Gradle
+target/
+bin/
+build/
+out/
+
+# Fichiers de dépendances (optionnel)
+*.jar
+*.war
+*.ear
+
+# Fichiers de logs
+*.log
+
+# Fichiers système
+.DS_Store
+*.swp
+
+# Fichiers spécifiques (ex: profils Spring)
+application-*.properties
