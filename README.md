@@ -23,7 +23,7 @@ L'utilisateur peut *ajouter, modifier, supprimer et marquer des tâches comme te
 
 ## 🛠 Technologies utilisées  
 - *Java 23*  
-- *Spring Boot 3.2.0*  
+- *Spring Boot 3.4.4*  
 - *Spring Data JPA*  
 - *H2 Database*  
 - *Thymeleaf* (pour l'affichage)  
