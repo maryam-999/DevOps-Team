@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple to-do lists</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #fff4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Helvetica;
+        }
+
+        h1 {
+            color: #444343;
+            margin-bottom:5px;
+            font-family: Helvetica;
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 89%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            flex: 1;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Helvetica;
+        }
+
+        button {
+            padding: 15px 15px;
+            background-color: #444343;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .fa-icon {
+            margin-right: 3px;
+        }
+    </style>
+</head>
+<body>
+<h1>Rename list</h1>
+<br />
+
+<div>
+    <form action="#" th:action="@{/edit-list-name/{id}(id=${toDoList.id})}" th:object="${toDoList}" method="POST">
+        <a href="/">
+            <button type="button"><i class="fas fa-arrow-left fa-icon"></i></button>
+        </a>
+        <div>
+            <input type="text"
+                   th:field="${toDoList.name}"
+                   placeholder="Name"
+                   autofocus="autofocus"
+            >
+            <button type="submit"><i class="fas fa-solid fa-check"></i></button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
