@@ -40,7 +40,21 @@ public class EditItemController {
         return "redirect:/";
     }
 
+    @GetMapping("/delete-list/{id}")
+    String deleteList(@PathVariable("id") Long listId) {
+        ToDoList list = toDoListRepository.findById(listId)
+                .orElseThrow(() -> new IllegalArgumentException("ToDoList id: " + listId + " not found"));
+        toDoListRepository.delete(list);
+        return "redirect:/";
+    }
 
+    @GetMapping("/delete-element/{id}")
+    String deleteElement(@PathVariable("id") Long elementId) {
+        ToDoElement element = toDoElementRepository.findById(elementId)
+                .orElseThrow(() -> new IllegalArgumentException("ToDoElement id: " + elementId + " not found"));
+        toDoElementRepository.delete(element);
+        return "redirect:/";
+    }
 
 
 }
