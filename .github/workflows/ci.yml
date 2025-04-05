@@ -29,8 +29,5 @@ jobs:
           key: maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: maven-
 
-      - name: Compiler et tester le projet
-        run: mvn -f DevOps-Team/todo/pom.xml clean install
-
       - name: Exécuter les tests unitaires
         run: mvn test
