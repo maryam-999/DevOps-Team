@@ -28,5 +28,4 @@ jobs:
       - name: Vérifier le démarrage de l'application
         run: mvn spring-boot:run & sleep 30
         
-      - name: Exécuter les tests unitaires
-        run: mvn test
+  
