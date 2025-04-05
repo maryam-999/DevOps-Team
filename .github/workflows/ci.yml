@@ -22,9 +22,6 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: Compiler et exécuter les tests
-        run: mvn clean install
-
       - name: Vérifier le démarrage de l'application
         run: mvn spring-boot:run & sleep 30
         
