@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout du code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Configurer JDK 21
         uses: actions/setup-java@v3
@@ -28,7 +30,7 @@ jobs:
           restore-keys: maven-
 
       - name: Compiler et tester le projet
-        run: mvn clean install
+        run: mvn -f DevOps-Team/todo/pom.xml clean install
 
       - name: Exécuter les tests unitaires
         run: mvn test
