@@ -21,7 +21,6 @@ public class EditItemController {
     @Autowired
     ToDoElementRepository toDoElementRepository;
 
-
     @GetMapping("/edit-list/{id}")
     ModelAndView editList(@PathVariable("id") Long listId) {
         ModelAndView modelAndView = new ModelAndView("edit-list-page");
