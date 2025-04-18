@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -45,5 +46,21 @@ public class EditItemControllerTest {
         ToDoList updatedList = toDoListRepository.findById(list.getId()).orElse(null);
         assertThat(updatedList).isNotNull();
         assertThat(updatedList.getName()).isEqualTo("Nouveau nom");
+    }
+    @Test
+    public void testDeleteList() throws Exception {
+        // Step 1: Create and save a list
+        ToDoList list = new ToDoList();
+        list.setName("List to delete");
+        list = toDoListRepository.save(list); // Save and retrieve the ID
+
+        // Step 2: Delete the list using the endpoint
+        mockMvc.perform(get("/delete-list/" + list.getId()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+
+        // Step 3: Verify that the list has been deleted
+        boolean exists = toDoListRepository.findById(list.getId()).isPresent();
+        assertThat(exists).isFalse();
     }
 }
