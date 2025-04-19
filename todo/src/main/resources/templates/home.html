@@ -91,6 +91,11 @@
         <table>
             <thead>
             <tr>
+                <th>
+                    <a th:href="@{/create-element/{id}(id=${list.id})}">
+                        <button type="button"><i class="fas fa-solid fa-plus"></i> </button>
+                    </a>
+                </th>
                 <th th:text="${list.name}"></th>
                 <th>
                     <a th:href="@{/edit-list/{id}(id=${list.id})}">
@@ -104,6 +109,26 @@
                 </th>
             </tr>
             </thead>
+            <tbody>
+            <tr th:each="element : ${list.toDoElements}">
+                <td>
+                    <!--check -->
+                </td>
+                <td>
+                    <span th:if="${element.isDone}">
+                        <s th:text="${element.name}"/>
+                    </span>
+                    <span th:unless="${element.isDone}" th:text="${element.name}"></span>
+                </td>
+                <td>
+                    <!--button update-->
+                </td>
+                <td>
+                    <!--button delete-->
+                </td>
+
+            </tr>
+            </tbody>
         </table>
         <br />
     </div>
