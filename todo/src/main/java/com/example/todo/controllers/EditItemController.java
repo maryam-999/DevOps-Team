@@ -55,5 +55,22 @@ public class EditItemController {
         return "redirect:/";
     }
 
+    @GetMapping("/edit-element/{id}")
+    ModelAndView editElement(@PathVariable("id") Long elementId) {
+        ModelAndView modelAndView = new ModelAndView("edit-element-page");
+        ToDoElement element = toDoElementRepository.findById(elementId)
+                .orElseThrow(() -> new IllegalArgumentException("ToDoElement id: " + elementId + " not found"));
+        modelAndView.addObject("toDoElement", element);
+        return modelAndView;
+    }
+
+    @PostMapping("/edit-element-name/{id}")
+    String editElementName(@PathVariable("id") Long elementId, @Valid ToDoElement toDoElement, BindingResult result, Model model) {
+        ToDoElement element = toDoElementRepository.findById(elementId)
+                .orElseThrow(() -> new IllegalArgumentException("ToDoElement id: " + elementId + " not found"));
+        element.setName(toDoElement.getName());
+        toDoElementRepository.save(element);
+        return "redirect:/";
+    }
 
 }
