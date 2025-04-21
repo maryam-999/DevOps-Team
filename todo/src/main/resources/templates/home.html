@@ -121,7 +121,9 @@
                     <span th:unless="${element.isDone}" th:text="${element.name}"></span>
                 </td>
                 <td>
-                    <!--button update-->
+                    <a th:href="@{/edit-element/{id}(id=${element.id})}">
+                        <button type="button"><i class="fas fa-solid fa-pen"></i></button>
+                    </a>
                 </td>
                 <td>
                     <!--button delete-->
