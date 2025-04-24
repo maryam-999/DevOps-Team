@@ -126,7 +126,9 @@
                     </a>
                 </td>
                 <td>
-                    <!--button delete-->
+                    <a th:href="@{/delete-element/{id}(id=${element.id})}">
+                        <button type="button"><i class="fas fa-times"></i></button>
+                    </a>
                 </td>
 
             </tr>
