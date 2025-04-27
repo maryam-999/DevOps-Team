@@ -112,7 +112,16 @@
             <tbody>
             <tr th:each="element : ${list.toDoElements}">
                 <td>
-                    <!--check -->
+                    <span th:if="${element.isDone}">
+                        <a th:href="@{/complete-element/{id}(id=${element.id})}">
+                        <button type="button"><i class="fas fa-times-circle"></i></button>
+                        </a>
+                    </span>
+                    <span th:unless="${element.isDone}">
+                        <!--balise a -->
+                        <button type="button"><i class="fas fa-check-circle"></i></button>
+                        <!--fin balise a -->
+                    </span>
                 </td>
                 <td>
                     <span th:if="${element.isDone}">
