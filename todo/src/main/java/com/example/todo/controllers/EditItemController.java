@@ -21,6 +21,16 @@ public class EditItemController {
     @Autowired
     ToDoElementRepository toDoElementRepository;
 
+    @GetMapping("/complete-element/{id}")
+    String completeElement(@PathVariable("id") Long elementId) {
+        ToDoElement element = toDoElementRepository.findById(elementId)
+                .orElseThrow(() -> new IllegalArgumentException("ToDoElement id: " + elementId + " not found"));
+
+        element.setIsDone(!element.getIsDone());
+        toDoElementRepository.save(element);
+        return "redirect:/";
+    }
+
     @GetMapping("/edit-list/{id}")
     ModelAndView editList(@PathVariable("id") Long listId) {
         ModelAndView modelAndView = new ModelAndView("edit-list-page");

@@ -118,9 +118,9 @@
                         </a>
                     </span>
                     <span th:unless="${element.isDone}">
-                        <!--balise a -->
+                        <a th:href="@{/complete-element/{id}(id=${element.id})}">
                         <button type="button"><i class="fas fa-check-circle"></i></button>
-                        <!--fin balise a -->
+                        </a>
                     </span>
                 </td>
                 <td>
