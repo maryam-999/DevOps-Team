@@ -1,6 +1,8 @@
 package com.example.todo;
 
+import com.example.todo.entities.ToDoElement;
 import com.example.todo.entities.ToDoList;
+import com.example.todo.repositories.ToDoElementRepository;
 import com.example.todo.repositories.ToDoListRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,9 @@ public class EditItemControllerTest {
 
     @Autowired
     private ToDoListRepository toDoListRepository;
+
+    @Autowired
+    private ToDoElementRepository toDoElementRepository;
 
     @AfterEach
     public void cleanUp() {
@@ -62,5 +67,32 @@ public class EditItemControllerTest {
         // Step 3: Verify that the list has been deleted
         boolean exists = toDoListRepository.findById(list.getId()).isPresent();
         assertThat(exists).isFalse();
+    }
+    @Test
+    public void testEditElement() throws Exception {
+        // Étape 1 : Créer une liste et un élément initial
+        ToDoList list = new ToDoList();
+        list.setName("Liste test");
+        list = toDoListRepository.save(list);
+
+        ToDoElement element = new ToDoElement();
+        element.setName("Élément initial");
+        element.setToDoList(list);
+        element = toDoElementRepository.save(element);
+        Long elementId = element.getId();
+
+        // Étape 2 : Modifier le nom de l'élément via le contrôleur
+        String newName = "Élément modifié";
+        mockMvc.perform(post("/edit-element-name/" + elementId)
+                        .param("name", newName)) // Le paramètre doit correspondre au champ de ToDoElement
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+
+        // Étape 3 : Vérifier que l'élément a bien été modifié
+        ToDoElement updatedElement = toDoElementRepository.findById(elementId)
+                .orElseThrow(() -> new IllegalArgumentException("Élément non trouvé"));
+
+        assertThat(updatedElement.getName()).isEqualTo(newName);
+        assertThat(updatedElement.getToDoList().getId()).isEqualTo(list.getId());
     }
 }
