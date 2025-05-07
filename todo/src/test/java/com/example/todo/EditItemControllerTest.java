@@ -95,4 +95,27 @@ public class EditItemControllerTest {
         assertThat(updatedElement.getName()).isEqualTo(newName);
         assertThat(updatedElement.getToDoList().getId()).isEqualTo(list.getId());
     }
+    @Test
+    public void testDeleteElement() throws Exception {
+        // Step 1: Create and save a list and an element
+        ToDoList list = new ToDoList();
+        list.setName("Test List");
+        list = toDoListRepository.save(list);
+
+        ToDoElement element = new ToDoElement();
+        element.setName("Test Element");
+        element.setToDoList(list);
+        element = toDoElementRepository.save(element);
+        Long elementId = element.getId();
+
+        // Step 2: Delete the element using the endpoint
+        mockMvc.perform(get("/delete-element/" + elementId))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+
+        // Step 3: Verify that the element has been deleted
+        boolean exists = toDoElementRepository.findById(elementId).isPresent();
+        assertThat(exists).isFalse();
+    }
+
 }
