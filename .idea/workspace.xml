@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="be90398e-1246-4afc-aa8d-4052b261674c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/todo/data/database.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/todo/data/database.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/data/database.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/todo/data/database.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/src/test/java/com/example/todo/EditItemControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/todo/src/test/java/com/example/todo/EditItemControllerTest.java" afterDir="false" />
+>>>>>>> f8d882f79feb197928009d6a26743ccc496ec9cf
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +47,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Shell Script.mvnw.executor": "Run",
+<<<<<<< HEAD
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/zoro/OneDrive/Desktop/DevOps/DevOps-Team",
@@ -48,6 +55,15 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.keymap"
+=======
+    "git-widget-placeholder": "feature/US-21",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/zoro/OneDrive/Desktop/DevOps/DevOps-Team",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "settings.sync"
+>>>>>>> f8d882f79feb197928009d6a26743ccc496ec9cf
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

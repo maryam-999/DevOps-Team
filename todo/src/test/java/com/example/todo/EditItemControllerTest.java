@@ -1,6 +1,8 @@
 package com.example.todo;
 
+import com.example.todo.entities.ToDoElement;
 import com.example.todo.entities.ToDoList;
+import com.example.todo.repositories.ToDoElementRepository;
 import com.example.todo.repositories.ToDoListRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +25,9 @@ public class EditItemControllerTest {
 
     @Autowired
     private ToDoListRepository toDoListRepository;
+
+    @Autowired
+    private ToDoElementRepository toDoElementRepository;
 
     @AfterEach
     public void cleanUp() {
@@ -63,4 +68,54 @@ public class EditItemControllerTest {
         boolean exists = toDoListRepository.findById(list.getId()).isPresent();
         assertThat(exists).isFalse();
     }
+    @Test
+    public void testEditElement() throws Exception {
+        // Étape 1 : Créer une liste et un élément initial
+        ToDoList list = new ToDoList();
+        list.setName("Liste test");
+        list = toDoListRepository.save(list);
+
+        ToDoElement element = new ToDoElement();
+        element.setName("Élément initial");
+        element.setToDoList(list);
+        element = toDoElementRepository.save(element);
+        Long elementId = element.getId();
+
+        // Étape 2 : Modifier le nom de l'élément via le contrôleur
+        String newName = "Élément modifié";
+        mockMvc.perform(post("/edit-element-name/" + elementId)
+                        .param("name", newName)) // Le paramètre doit correspondre au champ de ToDoElement
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+
+        // Étape 3 : Vérifier que l'élément a bien été modifié
+        ToDoElement updatedElement = toDoElementRepository.findById(elementId)
+                .orElseThrow(() -> new IllegalArgumentException("Élément non trouvé"));
+
+        assertThat(updatedElement.getName()).isEqualTo(newName);
+        assertThat(updatedElement.getToDoList().getId()).isEqualTo(list.getId());
+    }
+    @Test
+    public void testDeleteElement() throws Exception {
+        // Step 1: Create and save a list and an element
+        ToDoList list = new ToDoList();
+        list.setName("Test List");
+        list = toDoListRepository.save(list);
+
+        ToDoElement element = new ToDoElement();
+        element.setName("Test Element");
+        element.setToDoList(list);
+        element = toDoElementRepository.save(element);
+        Long elementId = element.getId();
+
+        // Step 2: Delete the element using the endpoint
+        mockMvc.perform(get("/delete-element/" + elementId))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/"));
+
+        // Step 3: Verify that the element has been deleted
+        boolean exists = toDoElementRepository.findById(elementId).isPresent();
+        assertThat(exists).isFalse();
+    }
+
 }
